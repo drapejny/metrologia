@@ -114,10 +114,12 @@ public class Controller {
             setFileString();
             findOperators();
             findIf();
+            findMethods();
+            System.out.println(fileString);
             findCycles();
             findSwitch();
             findTryCatch();
-            findMethods();
+
             deleteClasses();
 
             try {
@@ -225,34 +227,50 @@ public class Controller {
 
     public void findCycles() {
         List<Operator> cycles = new ArrayList<>();
-        Operator _for = new Operator("for", 0);
-        Pattern p = Pattern.compile("\\sfor \\(");
+        Operator _do_while = new Operator("do...while", 0);
+        Pattern p = Pattern.compile("\\sdo ");
         Matcher m = p.matcher(fileString);
         while (m.find()) {
+            _do_while.incCount();
+        }
+        fileString = m.replaceAll(" ");
+
+        Operator _for = new Operator("for", 0);
+        p = Pattern.compile("\\sfor \\(");
+        m = p.matcher(fileString);
+        List<Integer> brackets = new ArrayList<>();
+        while (m.find()) {
+            brackets.add(findBracket(m.end() - 1));
             _for.incCount();
-            deleteChar(findBracket(m.end() - 1));
+        }
+        Collections.sort(brackets);
+        int offset = 0;
+        for (int i = 0; i < brackets.size(); i++) {
+            deleteChar(brackets.get(i) - offset);
+            offset++;
         }
         p = Pattern.compile("\\sfor \\(");
         m = p.matcher(fileString);
         fileString = m.replaceAll(" ");
+
         Operator _while = new Operator("while", 0);
         p = Pattern.compile("\\swhile \\(");
         m = p.matcher(fileString);
+        brackets.clear();
         while (m.find()) {
+            brackets.add(findBracket(m.end() - 1));
             _while.incCount();
-            deleteChar(findBracket(m.end() - 1));
+        }
+        Collections.sort(brackets);
+        offset = 0;
+        for (int i = 0; i < brackets.size(); i++) {
+            deleteChar(brackets.get(i) - offset);
+            offset++;
         }
         p = Pattern.compile("\\swhile \\(");
         m = p.matcher(fileString);
         fileString = m.replaceAll(" ");
 
-        Operator _do_while = new Operator("do...while", 0);
-        p = Pattern.compile("\\sdo \\{");
-        m = p.matcher(fileString);
-        while (m.find()) {
-            _do_while.incCount();
-            deleteRange(m.start(), m.start() + 3);
-        }
         _while.setCount(_while.getCount() - _do_while.getCount());
         cycles.add(_for);
         cycles.add(_while);
@@ -459,7 +477,7 @@ public class Controller {
     public void deleteTrash() {
         Pattern p = Pattern.compile("\\{");
         Matcher m = p.matcher(fileString);
-        Operator operator1 = new Operator("{", 0);
+        Operator operator1 = new Operator("{ }", 0);
         while (m.find())
             operator1.incCount();
         fileString = m.replaceAll(" ");
@@ -562,10 +580,6 @@ public class Controller {
             i++;
         }
         return i;
-    }
-
-    public void deleteRange(int start, int end) {
-        fileString = fileString.substring(0, start).concat(fileString.substring(end + 1));
     }
 
     public void deleteChar(int pos) {
