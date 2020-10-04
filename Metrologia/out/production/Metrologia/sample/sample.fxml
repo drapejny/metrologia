@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane focusTraversable="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="689.0" prefWidth="780.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
+   <children>
+      <Button fx:id="choosButton" layoutX="479.0" layoutY="16.0" mnemonicParsing="false" text="Choose" />
+      <TextField fx:id="filePathTextField" layoutX="14.0" layoutY="16.0" prefHeight="26.0" prefWidth="454.0" />
+      <TableView fx:id="operatorTable" layoutX="45.0" layoutY="102.0" prefHeight="431.0" prefWidth="314.0">
+        <columns>
+          <TableColumn fx:id="jColumn" prefWidth="28.80002212524414" text="j" />
+          <TableColumn fx:id="operatorColumn" prefWidth="236.79994201660156" text="Оператор" />
+            <TableColumn fx:id="f1Column" prefWidth="44.7999267578125" text="f1" />
+        </columns>
+      </TableView>
+      <TableView fx:id="operandTable" layoutX="378.0" layoutY="102.0" prefHeight="431.0" prefWidth="314.0">
+         <columns>
+            <TableColumn fx:id="iColumn" prefWidth="28.80002212524414" text="i" />
+            <TableColumn fx:id="operandColumn" prefWidth="236.79994201660156" text="Операнд" />
+            <TableColumn fx:id="f2Column" prefWidth="44.7999267578125" text="f2" />
+         </columns>
+      </TableView>
+      <Button fx:id="openButton" layoutX="551.0" layoutY="16.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="56.0" text="Open" />
+      <Button fx:id="showButton" layoutX="45.0" layoutY="68.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="646.0" text="Show" textFill="#090909" />
+      <Text fx:id="n1Text" layoutX="45.0" layoutY="564.0" strokeType="OUTSIDE" strokeWidth="0.0" text="n1 = ">
+         <font>
+            <Font name="Arial Rounded MT Bold" size="25.0" />
+         </font>
+      </Text>
+      <Text fx:id="n2Text" layoutX="390.0" layoutY="564.0" strokeType="OUTSIDE" strokeWidth="0.0" text="n2 = ">
+         <font>
+            <Font name="Arial Rounded MT Bold" size="25.0" />
+         </font>
+      </Text>
+      <Text fx:id="N1Text" layoutX="241.0" layoutY="564.0" strokeType="OUTSIDE" strokeWidth="0.0" text="N1 = ">
+         <font>
+            <Font name="Arial Rounded MT Bold" size="25.0" />
+         </font>
+      </Text>
+      <Text fx:id="N2Text" layoutX="577.0" layoutY="564.0" strokeType="OUTSIDE" strokeWidth="0.0" text="N2 = ">
+         <font>
+            <Font name="Arial Rounded MT Bold" size="25.0" />
+         </font>
+      </Text>
+      <Text fx:id="nText" layoutX="154.0" layoutY="641.0" strokeType="OUTSIDE" strokeWidth="0.0" text="n = ">
+         <font>
+            <Font name="Arial Rounded MT Bold" size="25.0" />
+         </font>
+      </Text>
+      <Text fx:id="NText" layoutX="302.0" layoutY="641.0" strokeType="OUTSIDE" strokeWidth="0.0" text="N = ">
+         <font>
+            <Font name="Arial Rounded MT Bold" size="25.0" />
+         </font>
+      </Text>
+      <Text fx:id="VText" layoutX="468.0" layoutY="641.0" strokeType="OUTSIDE" strokeWidth="0.0" text="V = ">
+         <font>
+            <Font name="Arial Rounded MT Bold" size="25.0" />
+         </font>
+      </Text>
+   </children>
+</AnchorPane>
